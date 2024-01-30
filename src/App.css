@@ -77,19 +77,3 @@ hr {
   opacity: 1;
   background-color: transparent;
 }
-.middle-phone-image::before {
-  content: "";
-  display: block;
-
-  background-color: var(--primary-colour);
-  border-radius: 50%;
-  position: absolute;
-  width: 30%;
-  padding-bottom: 19%;
-  top: 51%;
-  left: 50%;
-  height: 75%;
-
-  z-index: -1;
-  transform: translate(-50%, -50%);
-}
