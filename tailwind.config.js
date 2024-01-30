@@ -7,6 +7,7 @@ export default {
         primary_colour: "var(--primary-colour)",
 
         text_primary_colour: "var(--text-colour)",
+        text_secondary_colour: "var(--text-secondary-colour)",
       },
       backgroundImage: {
         banner_bg: "url('./src/assets/images/landingpage/banner.png')",

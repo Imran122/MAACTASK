@@ -14,6 +14,7 @@
 :root {
   --primary-colour: #0052cc;
   --text-colour: #0052cc;
+  --text-secondary-colour: #4e4e4e;
   --custom-primary-font: "Manrope", sans-serif;
 }
 html {
@@ -75,4 +76,20 @@ hr {
 hr {
   opacity: 1;
   background-color: transparent;
+}
+.middle-phone-image::before {
+  content: "";
+  display: block;
+
+  background-color: var(--primary-colour);
+  border-radius: 50%;
+  position: absolute;
+  width: 30%;
+  padding-bottom: 19%;
+  top: 51%;
+  left: 50%;
+  height: 75%;
+
+  z-index: -1;
+  transform: translate(-50%, -50%);
 }
