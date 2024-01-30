@@ -1,3 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
+
+/* Other styles come after the @import statement */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button-design {
+    @apply text-text_colour text-2xl border border-secondary_colour p-3 rounded-full hover:border hover:border-primary_colour hover:text-primary_colour;
+  }
+}
+
+:root {
+  --primary-colour: #0052cc;
+  --text-colour: #0052cc;
+  --custom-primary-font: "Manrope", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a,
+span,
+label {
+  display: inline-block;
+}
+
+ul li {
+  list-style: none;
+}
+
+a,
+a:focus {
+  text-decoration: none !important;
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+button,
+input,
+textarea {
+  outline: 0;
+  border: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  opacity: 1;
+  background-color: transparent;
+}
