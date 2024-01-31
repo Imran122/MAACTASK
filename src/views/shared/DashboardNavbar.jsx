@@ -1,15 +1,62 @@
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { useState } from "react";
+import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import logo from "../../assets/images/landingpage/logofooter.png";
 import person from "../../assets/images/landingpage/person.png";
+
 export default function DashboardNavbar() {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleLogout = () => {
+    setDropdownVisible(false);
+  };
+
+  const handleSettings = () => {
+    setDropdownVisible(false);
+  };
+
   return (
     <div className="flex justify-between px-5 py-5 shadow-lg">
-      <img src={logo} />
+      <img src={logo} alt="Logo" />
       <div className="flex gap-2 justify-center items-center">
-        <img className="w-9 h-9 rounded-full" src={person} />
-        <div className="flex gap-2 justify-center items-center">
+        <div className="relative">
+          <img
+            className="w-9 h-9 rounded-full cursor-pointer"
+            src={person}
+            alt="Person"
+            onClick={toggleDropdown}
+          />
+          {dropdownVisible && (
+            <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-300 rounded shadow">
+              <div
+                className="p-2 hover:bg-gray-200 cursor-pointer"
+                onClick={handleSettings}
+              >
+                Settings
+              </div>
+              <div
+                className="p-2 hover:bg-gray-200 cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+            </div>
+          )}
+        </div>
+        <div
+          onClick={toggleDropdown}
+          className="flex gap-2 justify-center items-center cursor-pointer"
+        >
           <h2>Henry</h2>
-          <MdKeyboardArrowDown />
+
+          {dropdownVisible ? (
+            <MdOutlineKeyboardArrowUp />
+          ) : (
+            <MdKeyboardArrowDown onClick={toggleDropdown} />
+          )}
         </div>
       </div>
     </div>
