@@ -39,7 +39,7 @@ export default function DashBoardTable() {
               </div>
               <table className="min-w-full">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200 text-xs leading-4 text-gray-500 uppercase tracking-wider">
+                  <tr className="bg-gray-100 border-b border-gray-200 text-xs leading-4 text-gray-500 uppercase tracking-wider">
                     <th className="px-6 py-3 text-left font-medium">
                       <input
                         className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
