@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div>
+    <div className="mt-20">
       <p>footer vi</p>
     </div>
   );
