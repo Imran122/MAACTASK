@@ -67,21 +67,21 @@ export default function AboutUs() {
           <h3 className="text-primary_colour font-semibold text-3xl mt-4">
             1550+
           </h3>
-          <h2 className="text-text_secondary_colour mt-4">Platforms Created</h2>
+          <h2 className="text-text_secondary_colour mt-4">Total Users</h2>
         </div>
         <div className="col-span-2 flex flex-col justify-center items-center">
           <img className="" src={personicon} />
           <h3 className="text-primary_colour font-semibold text-3xl mt-4">
             20+
           </h3>
-          <h2 className="text-text_secondary_colour mt-4">Platforms Created</h2>
+          <h2 className="text-text_secondary_colour mt-4">Total Clients</h2>
         </div>
         <div className="col-span-2 flex flex-col justify-center items-center">
           <img className="" src={cup} />
           <h3 className="text-primary_colour font-semibold text-3xl mt-4">
             10+
           </h3>
-          <h2 className="text-text_secondary_colour mt-4">Platforms Created</h2>
+          <h2 className="text-text_secondary_colour mt-4">In Operations</h2>
         </div>
       </div>
     </div>

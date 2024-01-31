@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/landingpage/FieldX.png";
+import logo from "../../assets/images/landingpage/logofooter.png";
 export default function Navbar() {
   return (
     <div className="flex justify-between md:px-32 px-6 py-4 border-b-2 bg-transparent absolute top-0 w-full">
