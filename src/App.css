@@ -45,16 +45,6 @@ a:focus {
   text-decoration: none !important;
 }
 
-button:focus,
-input:focus,
-textarea:focus,
-button,
-input,
-textarea {
-  outline: 0;
-  border: 0;
-}
-
 button {
   cursor: pointer;
 }
@@ -76,4 +66,7 @@ hr {
 hr {
   opacity: 1;
   background-color: transparent;
+}
+.actives {
+  color: blue;
 }

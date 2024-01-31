@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../views/layout/DashboardLayout";
 import MainLayout from "../views/layout/MainLayout";
+import AreaPages from "../views/pages/Dashboard/AreaPages";
 import DashboardHome from "../views/pages/Dashboard/Dashboard";
 import HomePage from "../views/pages/HomePgae/HomePage";
 import LogIn from "../views/pages/LogIn/LogIn";
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardHome></DashboardHome>,
+      },
+      {
+        path: "/dashboard/area-pages",
+        element: <AreaPages></AreaPages>,
       },
     ],
   },
