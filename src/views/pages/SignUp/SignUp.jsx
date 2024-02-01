@@ -44,7 +44,7 @@ export default function SignUp() {
     };
     try {
       const response = await fetch(
-        "http://staging-api.erpxbd.com/api/v1/users/signup",
+        "https://staging-api.erpxbd.com/api/v1/users/signup",
         requestOptions
       );
       console.log("response", response);
