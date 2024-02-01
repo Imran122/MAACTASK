@@ -1,5 +1,64 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  isLoading,
+  userAdded,
+} from "../../../Redux/Features/AuthSlice/AuthSlice";
 import bgimage from "../../../assets/images/landingpage/banner.png";
 export default function SignUp() {
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    employeeId: "",
+    password: "",
+    passwordConfirm: "",
+    role: "",
+    phoneNumber: "",
+  });
+
+  const handelOnChange = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newRegisterData = { ...formData };
+    newRegisterData[field] = value;
+
+    setFormData(newRegisterData);
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    dispatch(isLoading(true));
+    console.log("formData", formData);
+    var requestOptions = {
+      method: "POST",
+      body: formData,
+      /* mode: "no-cors", */
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+      },
+      redirect: "follow",
+    };
+    try {
+      const response = await fetch(
+        "http://staging-api.erpxbd.com/api/v1/users/signup",
+        requestOptions
+      );
+      console.log("response", response);
+      const data = await response.json();
+
+      // Dispatch the userAdded action with the received data
+      dispatch(userAdded(data));
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      dispatch(isLoading(false));
+    }
+  };
+
   return (
     <div className="">
       <img className="w-full h-[1156px]" src={bgimage} />
@@ -11,60 +70,70 @@ export default function SignUp() {
           <p className="text-center text-text_secondary_colour mt-4">
             Fill in the details below to create an account
           </p>
-          <form className="">
+          <form onSubmit={handleSignUp} className="">
             <div className="border-b-2 border-gray-200 md:w-[608px] w-[450px] mt-4 md:px-0 px-4">
               <input
                 type="text"
+                name="name"
+                onChange={handelOnChange}
                 placeholder="Enter Your Full Name"
-                className=" py-3"
+                className="md:w-[608px] w-[450px] py-3"
               />
             </div>
             <div className="border-b-2 border-gray-200 md:w-[608px] w-[450px] mt-4 md:px-0 px-4">
               <input
                 type="text"
+                name="email"
+                onChange={handelOnChange}
                 placeholder="Enter Your Email"
-                className="  py-3"
+                className="md:w-[608px] w-[450px]  py-3"
               />
             </div>
             <div className="border-b-2 border-gray-200 md:w-[608px] w-[450px] mt-4 md:px-0 px-4">
               <input
                 type="text"
+                name="employeeId"
+                onChange={handelOnChange}
                 placeholder="Enter Your ID"
-                className="  py-3"
+                className="md:w-[608px] w-[450px]  py-3"
               />
             </div>
             <div className="border-b-2 border-gray-200 md:w-[608px] w-[450px]mt-4 md:px-0 px-4">
               <input
                 type="text"
+                name="phoneNumber"
+                onChange={handelOnChange}
                 placeholder="Your Mobile Number"
-                className="  py-3"
+                className="md:w-[608px] w-[450px]  py-3"
               />
             </div>
             <div className="border-b-2 border-gray-200 md:w-[608px] w-[450px] mt-4 md:px-0 px-4">
-              <input type="text" placeholder="Password" className="  py-3" />
+              <input
+                type="password"
+                name="password"
+                onChange={handelOnChange}
+                placeholder="Password"
+                className="md:w-[608px] w-[450px]  py-3"
+              />
             </div>
             <div className="border-b-2 border-gray-200 md:w-[608px] w-[450px] mt-4 md:px-0 px-4">
               <input
-                type="text"
+                type="password"
+                name="passwordConfirm"
+                onChange={handelOnChange}
                 placeholder="Confirm Password"
-                className="  py-3"
+                className="md:w-[608px] w-[450px]  py-3"
               />
             </div>
 
             <select
               className="md:w-[608px] w-[450px] mt-8 bg-transparent md:px-0 px-4 border-2 border-gray-200 py-4"
-              name="cars"
+              name="role"
+              onChange={handelOnChange}
               id="cars"
             >
-              <option
-                value="volvo"
-                className="text-text_secondary_colour "
-                selected
-              >
-                Select Your Role
-              </option>
-              <option value="saab">HUB</option>
-              <option value="mercedes">STORE</option>
+              <option value="HUB">HUB</option>
+              <option value="MANAGER">MANAGER</option>
             </select>
 
             <div className="flex gap-2 mt-4 md:px-0 px-4">
@@ -74,8 +143,12 @@ export default function SignUp() {
                 <span className="text-primary_colour">Terms & Conditions</span>
               </h2>
             </div>
-            <button className="text-white bg-primary_colour md:w-[608px] w-[450px] py-4 mt-8">
-              Create Account
+            <button
+              className="text-white bg-primary_colour md:w-[608px] w-[450px] py-4 mt-8"
+              type="submit"
+              disabled={authState.isLoading}
+            >
+              {authState.isLoading ? "Creating Account..." : "Create Account"}
             </button>
           </form>
 

@@ -7,10 +7,16 @@ export default function Navbar() {
         <img className="w-full h-auto" src={logo} alt="logo" />
       </div>
       <div className="flex gap-4">
-        <Link className="bg-primary_colour px-7 py-3 rounded-xl text-white">
+        <Link
+          to="/login"
+          className="bg-primary_colour px-7 py-3 rounded-xl text-white"
+        >
           Login
         </Link>
-        <Link className=" text-text_primary_colour px-7 py-3 font-custom_primary_font border-2 border-primary_colour border-r-4 border-b-4 rounded-xl text-center ">
+        <Link
+          to="/signup"
+          className=" text-text_primary_colour px-7 py-3 font-custom_primary_font border-2 border-primary_colour border-r-4 border-b-4 rounded-xl text-center "
+        >
           Registration
         </Link>
       </div>
