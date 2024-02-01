@@ -32,24 +32,22 @@ export default function SignUp() {
     e.preventDefault();
     dispatch(isLoading(true));
     console.log("formData", formData);
-    var requestOptions = {
-      method: "POST",
-      body: formData,
-      /* mode: "no-cors", */
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-      },
-      redirect: "follow",
-    };
+
     try {
       const response = await fetch(
         "https://staging-api.erpxbd.com/api/v1/users/signup",
-        requestOptions
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
       );
       console.log("response", response);
       const data = await response.json();
-
+      console.log("data", data);
       // Dispatch the userAdded action with the received data
       dispatch(userAdded(data));
     } catch (error) {
