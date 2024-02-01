@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuPlus } from "react-icons/lu";
+import { useDispatch, useSelector } from "react-redux";
 import DashboardEmptyComponent from "../../components/Dashboard/DashboardEmptyComponnet";
+import DashboardRegionTable from "../../components/Dashboard/DashboardTable/DashboardRegionTable";
 import AddRegion from "../../components/Dashboard/popup/AddRegion";
 
 export default function DashboardHome() {
@@ -14,6 +16,11 @@ export default function DashboardHome() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const dispatch = useDispatch();
+
+  const regions = useSelector((state) => state.regions.regions);
+  console.log("regionsxxx----", regions);
+
   return (
     <div>
       <div className="px-6 py-4 flex justify-between">
@@ -36,7 +43,12 @@ export default function DashboardHome() {
           Create New
         </button>
       </div>
-      <DashboardEmptyComponent />
+      {regions.length === 0 ? (
+        <DashboardEmptyComponent />
+      ) : (
+        <DashboardRegionTable />
+      )}
+
       <AddRegion isOpen={isModalOpen} onClose={closeModal}></AddRegion>
     </div>
   );

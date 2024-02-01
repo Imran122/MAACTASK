@@ -136,8 +136,8 @@ export default function SignUp() {
               onChange={handelOnChange}
               id="cars"
             >
+              <option value="select">SELECT</option>
               <option value="HUB">HUB</option>
-              <option value="MANAGER">MANAGER</option>
             </select>
 
             <div className="flex gap-2 mt-4 md:px-0 px-4">

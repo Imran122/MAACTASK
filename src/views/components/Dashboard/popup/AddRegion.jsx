@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addRegion } from "../../../../Redux/Features/RegionSlice/RegionSlice";
 
 export default function AddRegion({ isOpen, onClose }) {
   const modalClass = isOpen
@@ -17,6 +19,13 @@ export default function AddRegion({ isOpen, onClose }) {
       document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
+  const dispatch = useDispatch();
+  const [regionName, setRegionName] = useState("");
+
+  const handleAddRegion = () => {
+    dispatch(addRegion(regionName));
+    onClose();
+  };
 
   return (
     <div className={modalClass}>
@@ -25,10 +34,12 @@ export default function AddRegion({ isOpen, onClose }) {
         <input
           type="text"
           placeholder="Enter Region"
+          value={regionName}
+          onChange={(e) => setRegionName(e.target.value)}
           className="border-2 outline-none mt-2 py-3 px-2  mb-4"
         />
         <button
-          onClick={onClose}
+          onClick={handleAddRegion}
           className="bg-[#0B2E4E] text-white px-5 py-3 mb-8"
         >
           Add Region

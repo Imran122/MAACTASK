@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function DashBoardTable() {
+export default function DashboardRegionTable() {
   const dispatch = useDispatch();
   const regions = useSelector((state) => state.regions.regions);
 
