@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   isLoading,
   userAdded,
 } from "../../../Redux/Features/AuthSlice/AuthSlice";
 import bgimage from "../../../assets/images/landingpage/banner.png";
 export default function SignUp() {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
 
@@ -48,8 +51,11 @@ export default function SignUp() {
       console.log("response", response);
       const data = await response.json();
       console.log("data", data);
+      if (response.ok) {
+        dispatch(userAdded(data));
+        navigate("/login");
+      }
       // Dispatch the userAdded action with the received data
-      dispatch(userAdded(data));
     } catch (error) {
       console.error("Error:", error);
     } finally {

@@ -1,23 +1,30 @@
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/landingpage/logofooter.png";
 import person from "../../assets/images/landingpage/person.png";
 
 export default function DashboardNavbar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
+  const [cookies, removeCookie] = useCookies(["token"]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
-  const handleLogout = () => {
-    setDropdownVisible(false);
-  };
-
+  const user = useSelector((state) => state.auth);
   const handleSettings = () => {
     setDropdownVisible(false);
   };
+  const handleLogout = () => {
+    // Clear token from cookies
+    setDropdownVisible(false);
+    removeCookie("token");
 
+    navigate("/login");
+  };
   return (
     <div className="flex justify-between px-5 py-5 shadow-lg">
       <img src={logo} alt="Logo" />
@@ -50,7 +57,7 @@ export default function DashboardNavbar() {
           onClick={toggleDropdown}
           className="flex gap-2 justify-center items-center cursor-pointer"
         >
-          <h2>Henry</h2>
+          <h2>{user.name}</h2>
 
           {dropdownVisible ? (
             <MdOutlineKeyboardArrowUp />
